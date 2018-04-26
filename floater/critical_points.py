@@ -9,7 +9,7 @@ def classify_critical_points(b):
     res_hex = classify_critical_points_hexgrid(rect_to_hex(b))
     # need to shift the x indices back
     res = {}
-    for k, v in res_hex.iteritems():
+    for k, v in res_hex.items():
         y, x = v
         res[k] = hex_to_rect_coords(y, x)
     return res
@@ -28,7 +28,7 @@ def classify_critical_points_hexgrid(b):
     cp[::2,:] = cp_r[::2,:]
 
     res = dict.fromkeys(type_dict)
-    for k, v in type_dict.iteritems():
+    for k, v in type_dict.items():
         idx = np.nonzero(cp==v)
         res[k] = idx
 
@@ -71,9 +71,9 @@ def filter_critical_points(b, debug=False, left=True):
     dss = ds.sum()
 
     if debug and (dss!=2) and not np.any(s==0):
-        print 'dss: ', dss
-        print np.ma.masked_array(b - b[1,1], mask)
-        print s
+        print('dss: ', dss)
+        print(np.ma.masked_array(b - b[1,1], mask))
+        print(s)
     
     # it is very unlikely that a real image will have an exactly zero difference
     if np.any(s==0):
